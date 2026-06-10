@@ -26,6 +26,7 @@
 >   - [x] WString：仅支持 `Encoding.BigEndianUnicode` 编码
 >   - [x] USInt
 >   - [x] SInt
+>   - [x] WChar
 >
 > * 根据**字符串地址**进行单点读写【同步读写、异步读写】
 >
@@ -48,6 +49,7 @@
 >   - [ ] WString：仅支持 `Encoding.BigEndianUnicode` 编码
 >   - [ ] USInt
 >   - [ ] SInt
+>   - [ ] WChar
 
 
 
