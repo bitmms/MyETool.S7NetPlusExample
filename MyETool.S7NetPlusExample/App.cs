@@ -22,6 +22,7 @@
             // await Test.StringTest.Test();
             // await Test.WStringTest.Test();
             // await Test.UsIntTest.Test();
+            // await Test.SIntTest.Test();
         }
     }
 }
