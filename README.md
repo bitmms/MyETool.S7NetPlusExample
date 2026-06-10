@@ -34,7 +34,7 @@
 >   - [ ] UInt
 >   - [ ] DInt
 >   - [ ] UDInt
->   - [ ] Real
+>   - [x] Real
 >   - [ ] LReal
 >   - [ ] Char
 >   - [ ] WChar
