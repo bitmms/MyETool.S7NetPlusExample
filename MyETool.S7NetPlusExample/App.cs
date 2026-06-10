@@ -24,6 +24,7 @@
             // await Test.UsIntTest.Test();
             // await Test.SIntTest.Test();
             // await Test.WCharTest.Test();
+            // await Test.DateTest.Test();
         }
     }
 }
