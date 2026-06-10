@@ -25,6 +25,7 @@
 >   - [x] String：仅支持 `Encoding.ASCII` 编码
 >   - [x] WString：仅支持 `Encoding.BigEndianUnicode` 编码
 >   - [x] USInt
+>   - [x] SInt
 >
 > * 根据**字符串地址**进行单点读写【同步读写、异步读写】
 >
@@ -46,6 +47,7 @@
 >   - [ ] String：仅支持 `Encoding.ASCII` 编码
 >   - [ ] WString：仅支持 `Encoding.BigEndianUnicode` 编码
 >   - [ ] USInt
+>   - [ ] SInt
 
 
 
