@@ -23,6 +23,7 @@
             // await Test.WStringTest.Test();
             // await Test.UsIntTest.Test();
             // await Test.SIntTest.Test();
+            // await Test.WCharTest.Test();
         }
     }
 }
