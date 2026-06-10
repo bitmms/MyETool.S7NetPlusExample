@@ -7,32 +7,62 @@ public static class BoolTest
 {
     public static async Task Test(Plc plc)
     {
-        Console.WriteLine("1. 开始同步写 ==========");
+        Console.WriteLine("1. 开始单点同步写 Bool");
         plc.WriteBool(1, 0, 0, true);
         plc.WriteBool(1, 0, 1, true);
         plc.WriteBool(1, 0, 2, true);
-
-        Console.WriteLine("2. 开始同步读 ==========");
-        bool b1 = plc.ReadBool(1, 0, 0);
-        bool b2 = plc.ReadBool(1, 0, 1);
-        bool b3 = plc.ReadBool(1, 0, 2);
-        Console.WriteLine(b1);
-        Console.WriteLine(b2);
-        Console.WriteLine(b3);
+        plc.WriteBool(1, 0, 3, false);
+        plc.WriteBool(1, 0, 4, false);
+        plc.WriteBool(1, 0, 5, false);
 
         await Task.Delay(1000);
 
-        Console.WriteLine("3. 开始异步写 ==========");
-        await plc.WriteBoolAsync(1, 0, 0, false);
-        await plc.WriteBoolAsync(1, 0, 1, false);
-        await plc.WriteBoolAsync(1, 0, 2, false);
+        Console.WriteLine("2. 开始单点同步读 Bool");
+        Console.WriteLine(plc.ReadBool(1, 0, 0));
+        Console.WriteLine(plc.ReadBool(1, 0, 1));
+        Console.WriteLine(plc.ReadBool(1, 0, 2));
+        Console.WriteLine(plc.ReadBool(1, 0, 3));
+        Console.WriteLine(plc.ReadBool(1, 0, 4));
+        Console.WriteLine(plc.ReadBool(1, 0, 5));
 
-        Console.WriteLine("4. 开始异步读 ==========");
-        bool b4 = await plc.ReadBoolAsync(1, 0, 0);
-        bool b5 = await plc.ReadBoolAsync(1, 0, 1);
-        bool b6 = await plc.ReadBoolAsync(1, 0, 2);
-        Console.WriteLine(b4);
-        Console.WriteLine(b5);
-        Console.WriteLine(b6);
+        await Task.Delay(1000);
+
+        Console.WriteLine("3. 开始连续同步写 Bool");
+        plc.WriteBool(1, 0, 0, [false, false, false, true, true, true]);
+
+        await Task.Delay(1000);
+
+        Console.WriteLine("4. 开始连续同步读 Bool");
+        Console.WriteLine(string.Join(", ", plc.ReadBool(1, 0, 0, 6)));
+
+        await Task.Delay(1000);
+
+        Console.WriteLine("5. 开始单点异步写 Bool");
+        await plc.WriteBoolAsync(1, 0, 0, true);
+        await plc.WriteBoolAsync(1, 0, 1, true);
+        await plc.WriteBoolAsync(1, 0, 2, true);
+        await plc.WriteBoolAsync(1, 0, 3, false);
+        await plc.WriteBoolAsync(1, 0, 4, false);
+        await plc.WriteBoolAsync(1, 0, 5, false);
+
+        await Task.Delay(1000);
+
+        Console.WriteLine("6. 开始单点异步读 Bool");
+        Console.WriteLine(await plc.ReadBoolAsync(1, 0, 0));
+        Console.WriteLine(await plc.ReadBoolAsync(1, 0, 1));
+        Console.WriteLine(await plc.ReadBoolAsync(1, 0, 2));
+        Console.WriteLine(await plc.ReadBoolAsync(1, 0, 3));
+        Console.WriteLine(await plc.ReadBoolAsync(1, 0, 4));
+        Console.WriteLine(await plc.ReadBoolAsync(1, 0, 5));
+
+        await Task.Delay(1000);
+
+        Console.WriteLine("7. 开始连续异步写 Bool");
+        await plc.WriteBoolAsync(1, 0, 0, [false, false, false, true, true, true]);
+
+        await Task.Delay(1000);
+
+        Console.WriteLine("8. 开始连续异步读 Bool");
+        Console.WriteLine(string.Join(", ", await plc.ReadBoolAsync(1, 0, 0, 6)));
     }
 }
