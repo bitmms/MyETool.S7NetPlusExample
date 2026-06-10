@@ -4,7 +4,7 @@
 
 > 已实现功能
 >
-> * 根据 **DB 块字节偏移地址**进行单点读写【同步读写、异步读写】
+> * 根据 **DB 块字节偏移地址**进行**单点读写**【同步读写、异步读写】
 >
 >   - [x] Bool
 >   - [x] Byte
@@ -24,7 +24,27 @@
 >   - [x] Time
 >   - [x] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
 >   - [x] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
-> * 根据**字符串地址**进行单点读写【同步读写、异步读写】
+> * 根据 **DB 块字节偏移地址**进行**连续的批量读写**【同步读写、异步读写】
+>
+>   - [x] Bool
+>   - [ ] Byte
+>   - [ ] SInt
+>   - [ ] USInt
+>   - [ ] Int
+>   - [ ] UInt
+>   - [ ] DInt
+>   - [ ] UDInt
+>   - [ ] Real
+>   - [ ] LReal
+>   - [ ] Char
+>   - [ ] WChar
+>   - [ ] Word
+>   - [ ] DWord
+>   - [ ] Date
+>   - [ ] Time
+>   - [ ] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
+>   - [ ] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
+> * 根据**字符串地址**进行**单点读写**【同步读写、异步读写】
 >
 >   - [ ] Bool
 >   - [ ] Byte
