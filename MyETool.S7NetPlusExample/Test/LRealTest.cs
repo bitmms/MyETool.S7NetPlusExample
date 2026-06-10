@@ -5,22 +5,8 @@ namespace MyETool.S7NetPlusExample.Test;
 
 public static class LRealTest
 {
-    public static async Task Test()
+    public static async Task Test(Plc plc)
     {
-        const string plcIp = "192.168.2.200";
-        Console.WriteLine(111);
-        var plc = new Plc(
-            cpu: CpuType.S71200,
-            ip: plcIp,
-            port: 102,
-            rack: 0,
-            slot: 1
-        );
-        await plc.OpenAsync();
-        if (!plc.IsConnected) throw new InvalidOperationException($"PLC 连接失败：{plcIp}");
-        Console.WriteLine($"PLC 连接成功：{plcIp}");
-
-
         Console.WriteLine("1. 开始同步写 ==========");
         plc.WriteLReal(1, 48, 3.14);
         plc.WriteLReal(1, 56, 3.15);
@@ -33,6 +19,8 @@ public static class LRealTest
         Console.WriteLine(double1);
         Console.WriteLine(double2);
         Console.WriteLine(double3);
+
+        await Task.Delay(1000);
 
         Console.WriteLine("3. 开始异步写 ==========");
         await plc.WriteLRealAsync(1, 48, 8.661);

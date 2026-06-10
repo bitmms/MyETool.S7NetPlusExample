@@ -5,21 +5,8 @@ namespace MyETool.S7NetPlusExample.Test;
 
 public static class UsIntTest
 {
-    public static async Task Test()
+    public static async Task Test(Plc plc)
     {
-        const string plcIp = "192.168.2.200";
-        var plc = new Plc(
-            cpu: CpuType.S71200,
-            ip: plcIp,
-            port: 102,
-            rack: 0,
-            slot: 1
-        );
-        await plc.OpenAsync();
-        if (!plc.IsConnected) throw new InvalidOperationException($"PLC 连接失败：{plcIp}");
-        Console.WriteLine($"PLC 连接成功：{plcIp}");
-
-
         Console.WriteLine("1. 开始同步写 ==========");
         plc.WriteUsInt(1, 2170, 31);
         plc.WriteUsInt(1, 2171, 32);
@@ -32,6 +19,8 @@ public static class UsIntTest
         Console.WriteLine(usint1);
         Console.WriteLine(usint2);
         Console.WriteLine(usint3);
+
+        await Task.Delay(1000);
 
         Console.WriteLine("3. 开始异步写 ==========");
         await plc.WriteUsIntAsync(1, 2170, 61);
