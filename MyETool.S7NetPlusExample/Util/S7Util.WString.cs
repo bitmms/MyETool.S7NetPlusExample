@@ -17,6 +17,8 @@ public static partial class S7Util
      *      * WString 不支持 4 字节字符，写入 4 字节字符会直接乱码
      */
 
+    private static readonly Encoding S7WStringEncoding = Encoding.BigEndianUnicode;
+
     public static string ReadWString(this Plc plc, int db, int byteAdr, int maxCharCount)
     {
         if (maxCharCount <= 0) return "";
@@ -28,13 +30,13 @@ public static partial class S7Util
         int contentLength = bytes[2] << 8 | bytes[3]; // 实际写入字符串的字节数
         if (totalLength < contentLength) return ""; // 保险处理，避免之前针对 plc 的操作出现问题
 
-        string resultString = Encoding.BigEndianUnicode.GetString(bytes, 4, contentLength * 2);
+        string resultString = S7WStringEncoding.GetString(bytes, 4, contentLength * 2);
         return resultString;
     }
 
     public static void WriteWString(this Plc plc, int db, int byteAdr, string value, int maxCharCount)
     {
-        byte[] bytes = Encoding.BigEndianUnicode.GetBytes(value);
+        byte[] bytes = S7WStringEncoding.GetBytes(value);
 
         // 1. 限制字符数：[0,254]
         maxCharCount = Math.Min(maxCharCount, 254);
@@ -72,13 +74,13 @@ public static partial class S7Util
         int contentLength = bytes[2] << 8 | bytes[3]; // 实际写入字符串的字节数
         if (totalLength < contentLength) return ""; // 保险处理，避免之前针对 plc 的操作出现问题
 
-        string resultString = Encoding.BigEndianUnicode.GetString(bytes, 4, contentLength * 2);
+        string resultString = S7WStringEncoding.GetString(bytes, 4, contentLength * 2);
         return resultString;
     }
 
     public static async Task WriteWStringAsync(this Plc plc, int db, int byteAdr, string value, int maxCharCount, CancellationToken cancellationToken = default)
     {
-        byte[] bytes = Encoding.BigEndianUnicode.GetBytes(value);
+        byte[] bytes = S7WStringEncoding.GetBytes(value);
 
         // 1. 限制字符数：[0,254]
         maxCharCount = Math.Min(maxCharCount, 254);

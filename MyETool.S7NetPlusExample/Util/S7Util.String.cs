@@ -15,7 +15,7 @@ public static partial class S7Util
      *      * PLC String 只支持单字节字符，只用 1 字节存储字符，包括头字节的长度也用 1 字节存储
      */
 
-    private static readonly Encoding S7Encoding = Encoding.ASCII;
+    private static readonly Encoding S7StringEncoding = Encoding.ASCII;
 
     public static string ReadString(this Plc plc, int db, int byteAdr, int n)
     {
@@ -28,13 +28,13 @@ public static partial class S7Util
         int contentLength = bytes[1]; // 实际写入字符串的字节数
         if (totalLength < contentLength) return ""; // 保险处理，避免之前针对 plc 的操作出现问题
 
-        string fromByteArray = S7Encoding.GetString(bytes, 2, contentLength);
+        string fromByteArray = S7StringEncoding.GetString(bytes, 2, contentLength);
         return fromByteArray;
     }
 
     public static void WriteString(this Plc plc, int db, int byteAdr, string value, byte n)
     {
-        byte[] bytes = S7Encoding.GetBytes(value);
+        byte[] bytes = S7StringEncoding.GetBytes(value);
         n = Math.Min(n, (byte)254);
         n = Math.Max(n, (byte)0);
         byte[] destArray = new byte[2 + n];
@@ -64,7 +64,7 @@ public static partial class S7Util
         int contentLength = bytes[1]; // 实际写入字符串的字节数
         if (totalLength < contentLength) return ""; // 保险处理，避免之前针对 plc 的操作出现问题
 
-        string resultString = S7Encoding.GetString(bytes, 2, contentLength);
+        string resultString = S7StringEncoding.GetString(bytes, 2, contentLength);
         return resultString;
     }
 
@@ -80,7 +80,7 @@ public static partial class S7Util
     /// <returns></returns>
     public static async Task WriteStringAsync(this Plc plc, int db, int byteAdr, string value, byte maxCharCount, CancellationToken cancellationToken = default)
     {
-        byte[] bytes = S7Encoding.GetBytes(value);
+        byte[] bytes = S7StringEncoding.GetBytes(value);
         // 1. 实际可写入字符串的字节数的范围是 [0, 254]
         maxCharCount = Math.Min(maxCharCount, (byte)254);
         maxCharCount = Math.Max(maxCharCount, (byte)0);
