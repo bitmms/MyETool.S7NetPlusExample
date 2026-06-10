@@ -7,55 +7,76 @@
 > * 根据 **DB 块字节偏移地址**进行单点读写【同步读写、异步读写】
 >
 >   - [x] Bool
->
 >   - [x] Byte
->   - [x] Char
->
+>   - [x] SInt
+>   - [x] USInt
 >   - [x] Int
->   - [x] DInt
->
 >   - [x] UInt
+>   - [x] DInt
 >   - [x] UDInt
->
->   - [x] Word
->   - [x] DWord
 >   - [x] Real
 >   - [x] LReal
->   - [x] Time
->   - [x] String：仅支持 `Encoding.ASCII` 编码
->   - [x] WString：仅支持 `Encoding.BigEndianUnicode` 编码
->   - [x] USInt
->   - [x] SInt
+>   - [x] Char
 >   - [x] WChar
+>   - [x] Word
+>   - [x] DWord
 >   - [x] Date
->
+>   - [x] Time
+>   - [x] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
+>   - [x] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
 > * 根据**字符串地址**进行单点读写【同步读写、异步读写】
 >
 >   - [ ] Bool
 >   - [ ] Byte
->   - [ ] Char
->
+>   - [ ] SInt
+>   - [ ] USInt
 >   - [ ] Int
->   - [ ] DInt
->
 >   - [ ] UInt
+>   - [ ] DInt
 >   - [ ] UDInt
->
->   - [ ] Word
->   - [ ] DWord
 >   - [ ] Real
 >   - [ ] LReal
->   - [ ] Time
->   - [ ] String：仅支持 `Encoding.ASCII` 编码
->   - [ ] WString：仅支持 `Encoding.BigEndianUnicode` 编码
->   - [ ] USInt
->   - [ ] SInt
+>   - [ ] Char
 >   - [ ] WChar
+>   - [ ] Word
+>   - [ ] DWord
 >   - [ ] Date
+>   - [ ] Time
+>   - [ ] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
+>   - [ ] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
 
+## S7-1200 和 C# 的对比
 
+| S7-1200 | S7-1200 占用空间 | C#             | C# 占用空间 | 说明                                                |
+| ------- | ---------------- | -------------- | ----------- | --------------------------------------------------- |
+| Bool    | 1bit             | bool           | 1 Byte      | 布尔值                                              |
+| Byte    | 1 Byte           | byte           | 1 Byte      | 字节，0-255                                         |
+|         |                  |                |             |                                                     |
+| SInt    | 1 Byte           | sbyte          | 1 Byte      | 有符号 1 字节整数：-128 到 127                      |
+| USInt   | 1 Byte           | byte           | 1 Byte      | 无符号 1 字节整数：0-255                            |
+|         |                  |                |             |                                                     |
+| Int     | 2 Byte           | Int16、short   | 2 Byte      | 有符号 2 字节整数                                   |
+| UInt    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数                                   |
+|         |                  |                |             |                                                     |
+| DInt    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数                                   |
+| UDInt   | 4 Byte           | UInt32、uint   | 4 Byte      | 无符号 4 字节整数                                   |
+|         |                  |                |             |                                                     |
+| Real    | 4 Byte           | float          | 4 Byte      | 单精度 4 字节浮点数                                 |
+| LReal   | 8 Byte           | double         | 8 Byte      | 双精度 8 字节浮点数                                 |
+|         |                  |                |             |                                                     |
+| Char    | 1 Byte，单字节   | char           | 2 Byte      | C# 使用 Unicode UTF-16 双字节小端                   |
+| WChar   | 2 Byte，双字节   | char           | 2 Byte      | PLC 使用 Unicode UTF-16 双字节大端                  |
+|         |                  |                |             |                                                     |
+| Word    | 2 Byte           | UInt16、ushort | 2 Byte      | 和 UInt 完全一样，只是用途命名不同                  |
+| DWord   | 4 Byte           | UInt32、uint   | 4 Byte      | 和 UDInt 完全一样，只是用途命名不同                 |
+|         |                  |                |             |                                                     |
+| Date    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数，表示从 1990-01-01 经过了多少天   |
+| Time    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数，表示从 0 开始，经过了多少毫秒    |
+|         |                  |                |             |                                                     |
+| String  | (1+1+n) Byte     | string         | 不定        | 总长度 (1 Byte)+ 有效长度 (1 Byte)+ 字符 (n Byte)   |
+| WString | (2+2+2n) Byte    | string         | 不定        | 总长度 (2 Byte)+ 有效长度 (2 Byte)+ 字符 (n*2 Byte) |
 
-> 示例
+## 示例
 
 ```shell
 dotnet add package S7netplus
