@@ -23,6 +23,7 @@
 >   - [x] LReal
 >   - [x] Time
 >   - [x] String
+>   - [x] WString
 >
 > * 根据**字符串地址**进行单点读写【同步读写、异步读写】
 >
@@ -42,6 +43,7 @@
 >   - [ ] LReal
 >   - [ ] Time
 >   - [ ] String
+>   - [ ] WString
 
 
 
