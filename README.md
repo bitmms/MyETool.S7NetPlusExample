@@ -2,68 +2,32 @@
 
 > 基于 [S7NetPlus](https://github.com/S7NetPlus/s7netplus) 二次封装，已经测试的 PLC 版本：S7-1200
 
-> 已实现功能
->
-> * 根据 **DB 块字节偏移地址**进行**单点读写**【同步读写、异步读写】
->
->   - [x] Bool
->   - [x] Byte
->   - [x] SInt
->   - [x] USInt
->   - [x] Int
->   - [x] UInt
->   - [x] DInt
->   - [x] UDInt
->   - [x] Real
->   - [x] LReal
->   - [x] Char
->   - [x] WChar
->   - [x] Word
->   - [x] DWord
->   - [x] Date
->   - [x] Time
->   - [x] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
->   - [x] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
-> * 根据 **DB 块字节偏移地址**进行**连续的批量读写**【同步读写、异步读写】
->
->   - [x] Bool
->   - [ ] Byte
->   - [ ] SInt
->   - [ ] USInt
->   - [ ] Int
->   - [ ] UInt
->   - [ ] DInt
->   - [ ] UDInt
->   - [x] Real
->   - [ ] LReal
->   - [ ] Char
->   - [ ] WChar
->   - [ ] Word
->   - [ ] DWord
->   - [ ] Date
->   - [ ] Time
->   - [ ] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
->   - [ ] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
-> * 根据**字符串地址**进行**单点读写**【同步读写、异步读写】
->
->   - [ ] Bool
->   - [ ] Byte
->   - [ ] SInt
->   - [ ] USInt
->   - [ ] Int
->   - [ ] UInt
->   - [ ] DInt
->   - [ ] UDInt
->   - [ ] Real
->   - [ ] LReal
->   - [ ] Char
->   - [ ] WChar
->   - [ ] Word
->   - [ ] DWord
->   - [ ] Date
->   - [ ] Time
->   - [ ] String：在 S7-1200 中默认仅支持 `Encoding.ASCII` 编码
->   - [ ] WString：在 S7-1200 中默认仅支持 `Encoding.BigEndianUnicode` 编码
+
+
+## 实现功能对比
+
+| 数据类型 | 根据 **DB 块偏移地址**进行**单点读写** | 根据 **DB 块偏移地址**进行**连续的批量读写** | 根据**字符串地址**进行**单点读写** |
+| :------: | :------------------------------------: | :------------------------------------------: | :--------------------------------: |
+|   Bool   |             同步✅   异步✅              |                同步✅   异步✅                 |           同步❌   异步❌            |
+|   Byte   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   SInt   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|  USInt   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   Int    |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   UInt   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   DInt   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|  UDInt   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   Real   |             同步✅   异步✅              |                同步✅   异步✅                 |           同步❌   异步❌            |
+|  LReal   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   Char   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|  WCahr   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   Word   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|  DWord   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   Date   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|   Time   |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+|  String  |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+| WString  |             同步✅   异步✅              |                同步❌   异步❌                 |           同步❌   异步❌            |
+
+
 
 ## S7-1200 和 C# 的对比
 
@@ -96,7 +60,9 @@
 | String  | (1+1+n) Byte     | string         | 不定        | 总长度 (1 Byte)+ 有效长度 (1 Byte)+ 字符 (n Byte)   |
 | WString | (2+2+2n) Byte    | string         | 不定        | 总长度 (2 Byte)+ 有效长度 (2 Byte)+ 字符 (n*2 Byte) |
 
-## 示例
+
+
+## 代码示例
 
 ```shell
 dotnet add package S7netplus
