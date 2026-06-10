@@ -1,6 +1,6 @@
 # 使用 C# 读写西门子 PLC
 
-> 基于 [S7NetPlus](https://github.com/S7NetPlus/s7netplus) 二次封装
+> 基于 [S7NetPlus](https://github.com/S7NetPlus/s7netplus) 二次封装，已经测试的 PLC 版本：S7-1200
 
 > 已实现功能
 >

@@ -3,7 +3,7 @@
 namespace MyETool.S7NetPlusExample.Util
 {
     /// <summary>
-    /// 支持的版本：S7 PLC (S7-200, S7-300, S7-400, S7-1200, S7-1500)
+    /// 已经测试的 PLC 版本：S7-1200
     /// </summary>
     /// <example>
     /// https://github.com/S7NetPlus/s7netplus
