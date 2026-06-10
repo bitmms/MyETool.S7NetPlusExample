@@ -19,6 +19,7 @@
             // await Test.UdIntTest.Test();
             // await Test.UIntTest.Test();
             // await Test.WordTest.Test();
+            // await Test.StringTest.Test();
         }
     }
 }
