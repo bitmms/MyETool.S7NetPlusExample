@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using S7.Net;
-using S7.Net.Types;
 
 namespace MyETool.S7NetPlusExample.Util;
 
