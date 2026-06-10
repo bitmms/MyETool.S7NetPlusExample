@@ -63,6 +63,6 @@ public static class RealTest
         await Task.Delay(1000);
 
         Console.WriteLine("8. 开始连续异步读 Real");
-        Console.WriteLine(string.Join(", ", plc.ReadReal(1, 2, 6)));
+        Console.WriteLine(string.Join(", ", await plc.ReadRealAsync(1, 2, 6)));
     }
 }
