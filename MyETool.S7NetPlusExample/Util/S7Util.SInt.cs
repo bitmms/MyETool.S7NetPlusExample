@@ -5,8 +5,8 @@ namespace MyETool.S7NetPlusExample.Util;
 public static partial class S7Util
 {
     /// <summary>
-    /// 在 S7 中  SInt = 1B = 8b，[-127,128]
-    /// 在 C# 中  sbyte = 1B = 8b，[-127,128]
+    /// 在 S7 中  SInt = 1B = 8b，[-128,127]
+    /// 在 C# 中  sbyte = 1B = 8b，[-128,127]
     /// </summary>
     private const int SIntBitLength = 8;
 
