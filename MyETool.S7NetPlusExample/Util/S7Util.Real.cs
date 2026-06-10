@@ -38,9 +38,9 @@ public static partial class S7Util
     /// <summary>
     /// 【同步】批量写入连续的 Real
     /// </summary>
-    public static void WriteReal(this Plc plc, int db, int byteAdr, float[] value)
+    public static void WriteReal(this Plc plc, int db, int byteAdr, float[] values)
     {
-        plc.WriteBytes(DataType.DataBlock, db, byteAdr, Real.ToByteArray(value));
+        plc.WriteBytes(DataType.DataBlock, db, byteAdr, Real.ToByteArray(values));
     }
 
     /// <summary>
@@ -74,8 +74,8 @@ public static partial class S7Util
     /// <summary>
     /// 【异步】批量写入连续的 Real
     /// </summary>
-    public static async Task WriteRealAsync(this Plc plc, int db, int byteAdr, float[] value, CancellationToken cancellationToken = default)
+    public static async Task WriteRealAsync(this Plc plc, int db, int byteAdr, float[] values, CancellationToken cancellationToken = default)
     {
-        await plc.WriteBytesAsync(DataType.DataBlock, db, byteAdr, Real.ToByteArray(value), cancellationToken);
+        await plc.WriteBytesAsync(DataType.DataBlock, db, byteAdr, Real.ToByteArray(values), cancellationToken);
     }
 }
