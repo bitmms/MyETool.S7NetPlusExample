@@ -49,8 +49,8 @@
 | DWord   | 4 Byte           | UInt32、uint   | 4 Byte      | 本质和 UDInt 完全一样，常用作位容器                          |
 | Date    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数，表示从 1990-01-01 经过了多少天            |
 | Time    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数，表示从 0 开始，经过了多少毫秒             |
-| String  | (1+1+n) Byte     | string         | 不定        | 总长度 (1 Byte)+ 有效长度 (1 Byte)+ 字符 (n Byte)            |
-| WString | (2+2+2n) Byte    | string         | 不定        | 总长度 (2 Byte)+ 有效长度 (2 Byte)+ 字符 (n*2 Byte)          |
+| String  | (1+1+n) Byte     | string         | 不定        | 总长度 (1 Byte)+ 有效长度 (1 Byte)+ 字符 (n Byte)<br>S7-1200 使用 ASCII 单字节字符编码字符串 |
+| WString | (2+2+2n) Byte    | string         | 不定        | 总长度 (2 Byte)+ 有效长度 (2 Byte)+ 字符 (n*2 Byte)<br/>S7-1200 使用 Unicode UTF-16 双字节大端字符编码字符串 |
 
 
 
