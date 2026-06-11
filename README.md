@@ -73,14 +73,31 @@ await plc.OpenAsync();
 if (!plc.IsConnected) throw new InvalidOperationException($"PLC 连接失败：{plcIp}");
 Console.WriteLine($"PLC 连接成功：{plcIp}");
 
+
 // 单点读写 S7-1200 的 Real 类型
 await plc.WriteRealAsync(1, 36, 3.14f);
 float ff = await plc.ReadRealAsync(1, 36);
 Console.WriteLine(ff);
 
+
 // 单点读写 S7-1200 的 Time 类型
 await plc.WriteTimeAsync(1, 72, new TimeSpan(2, 2, 3, 4, 5));
 TimeSpan timeSpan = await plc.ReadTimeAsync(1, 72);
 Console.WriteLine(timeSpan);
+
+
+// 从地址偏移1790开始，批量写入连续的 WString 数据【单串最大允许字符长度为 508，也即 WString[508]】
+await plc.WriteWStringAsync(1, 1790, [
+            "中国你好_1",
+            "中国你好_2",
+            "中国你好_3",
+            "中国你好_4",
+            "中国你好_5",
+            "中国你好_6",
+        ], 508);
+
+
+// 从地址偏移1790开始，批量读取 6 个连续的 WString 数据【单串最大允许字符长度为 508，也即 WString[508]】
+string[] stringArray = await plc.ReadWStringAsync(1, 1790, 6, 508)
 ```
 
