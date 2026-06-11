@@ -31,34 +31,26 @@
 
 ## S7-1200 和 C# 的对比
 
-| S7-1200 | S7-1200 占用空间 | C#             | C# 占用空间 | 说明                                                |
-| ------- | ---------------- | -------------- | ----------- | --------------------------------------------------- |
-| Bool    | 1bit             | bool           | 1 Byte      | 布尔值                                              |
-| Byte    | 1 Byte           | byte           | 1 Byte      | 字节，0-255                                         |
-|         |                  |                |             |                                                     |
-| SInt    | 1 Byte           | sbyte          | 1 Byte      | 有符号 1 字节整数：-128 到 127                      |
-| USInt   | 1 Byte           | byte           | 1 Byte      | 无符号 1 字节整数：0-255                            |
-|         |                  |                |             |                                                     |
-| Int     | 2 Byte           | Int16、short   | 2 Byte      | 有符号 2 字节整数                                   |
-| UInt    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数                                   |
-|         |                  |                |             |                                                     |
-| DInt    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数                                   |
-| UDInt   | 4 Byte           | UInt32、uint   | 4 Byte      | 无符号 4 字节整数                                   |
-|         |                  |                |             |                                                     |
-| Real    | 4 Byte           | float          | 4 Byte      | 单精度 4 字节浮点数                                 |
-| LReal   | 8 Byte           | double         | 8 Byte      | 双精度 8 字节浮点数                                 |
-|         |                  |                |             |                                                     |
-| Char    | 1 Byte，单字节   | char           | 2 Byte      | C# 使用 Unicode UTF-16 双字节小端                   |
-| WChar   | 2 Byte，双字节   | char           | 2 Byte      | PLC 使用 Unicode UTF-16 双字节大端                  |
-|         |                  |                |             |                                                     |
-| Word    | 2 Byte           | UInt16、ushort | 2 Byte      | 和 UInt 完全一样，只是用途命名不同                  |
-| DWord   | 4 Byte           | UInt32、uint   | 4 Byte      | 和 UDInt 完全一样，只是用途命名不同                 |
-|         |                  |                |             |                                                     |
-| Date    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数，表示从 1990-01-01 经过了多少天   |
-| Time    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数，表示从 0 开始，经过了多少毫秒    |
-|         |                  |                |             |                                                     |
-| String  | (1+1+n) Byte     | string         | 不定        | 总长度 (1 Byte)+ 有效长度 (1 Byte)+ 字符 (n Byte)   |
-| WString | (2+2+2n) Byte    | string         | 不定        | 总长度 (2 Byte)+ 有效长度 (2 Byte)+ 字符 (n*2 Byte) |
+| S7-1200 | S7-1200 占用空间 | C#             | C# 占用空间 | 说明                                                         |
+| ------- | ---------------- | -------------- | ----------- | ------------------------------------------------------------ |
+| Bool    | 1bit             | bool           | 1 Byte      | 布尔值                                                       |
+| Byte    | 1 Byte           | byte           | 1 Byte      | 字节，0-255                                                  |
+| SInt    | 1 Byte           | sbyte          | 1 Byte      | 有符号 1 字节整数：-128 到 127                               |
+| USInt   | 1 Byte           | byte           | 1 Byte      | 无符号 1 字节整数：0-255                                     |
+| Int     | 2 Byte           | Int16、short   | 2 Byte      | 有符号 2 字节整数                                            |
+| UInt    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数                                            |
+| DInt    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数                                            |
+| UDInt   | 4 Byte           | UInt32、uint   | 4 Byte      | 无符号 4 字节整数                                            |
+| Real    | 4 Byte           | float          | 4 Byte      | 单精度 4 字节浮点数                                          |
+| LReal   | 8 Byte           | double         | 8 Byte      | 双精度 8 字节浮点数                                          |
+| Char    | 1 Byte，单字节   | char           | 2 Byte      | C# 使用 Unicode UTF-16 双字节小端<br>S7-1200 使用 ASCII 单字节字符 |
+| WChar   | 2 Byte，双字节   | char           | 2 Byte      | C# 使用 Unicode UTF-16 双字节小端<br/>S7-1200 使用 Unicode UTF-16 双字节大端 |
+| Word    | 2 Byte           | UInt16、ushort | 2 Byte      | 和 UInt 完全一样，只是用途命名不同                           |
+| DWord   | 4 Byte           | UInt32、uint   | 4 Byte      | 和 UDInt 完全一样，只是用途命名不同                          |
+| Date    | 2 Byte           | UInt16、ushort | 2 Byte      | 无符号 2 字节整数，表示从 1990-01-01 经过了多少天            |
+| Time    | 4 Byte           | Int32、int     | 4 Byte      | 有符号 4 字节整数，表示从 0 开始，经过了多少毫秒             |
+| String  | (1+1+n) Byte     | string         | 不定        | 总长度 (1 Byte)+ 有效长度 (1 Byte)+ 字符 (n Byte)            |
+| WString | (2+2+2n) Byte    | string         | 不定        | 总长度 (2 Byte)+ 有效长度 (2 Byte)+ 字符 (n*2 Byte)          |
 
 
 
