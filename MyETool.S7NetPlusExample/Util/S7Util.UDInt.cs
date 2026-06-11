@@ -5,33 +5,77 @@ namespace MyETool.S7NetPlusExample.Util;
 
 public static partial class S7Util
 {
-    /// <summary>
-    /// 在 S7 中  UDInt = 4B = 32b
-    /// 在 C# 中  UInt32 = uint = 4B = 32b
-    /// </summary>
-    private const int UdIntBitLength = 32;
+    private const int UdIntByteLength = 4;
 
+    /// <summary>
+    /// 【同步】单点读取 UDInt
+    /// </summary>
     public static uint ReadUdInt(this Plc plc, int db, int byteAdr)
     {
-        byte[] bytes = plc.ReadBytes(DataType.DataBlock, db, byteAdr, UdIntBitLength / 8);
+        byte[] bytes = plc.ReadBytes(DataType.DataBlock, db, byteAdr, UdIntByteLength);
         uint value = DWord.FromByteArray(bytes);
         return value;
     }
 
+    /// <summary>
+    /// 【同步】批量读取连续的 UDInt
+    /// </summary>
+    public static uint[] ReadUdInt(this Plc plc, int db, int byteAdr, int count)
+    {
+        byte[] bytes = plc.ReadBytes(DataType.DataBlock, db, byteAdr, UdIntByteLength * count);
+        uint[] values = DWord.ToArray(bytes);
+        return values;
+    }
+
+    /// <summary>
+    /// 【同步】单点写入 UDInt
+    /// </summary>
     public static void WriteUdInt(this Plc plc, int db, int byteAdr, uint value)
     {
         plc.WriteBytes(DataType.DataBlock, db, byteAdr, DWord.ToByteArray(value));
     }
 
+    /// <summary>
+    /// 【同步】批量写入连续的 UDInt
+    /// </summary>
+    public static void WriteUdInt(this Plc plc, int db, int byteAdr, uint[] values)
+    {
+        plc.WriteBytes(DataType.DataBlock, db, byteAdr, DWord.ToByteArray(values));
+    }
+
+    /// <summary>
+    /// 【异步】单点读取 UDInt
+    /// </summary>
     public static async Task<uint> ReadUdIntAsync(this Plc plc, int db, int byteAdr, CancellationToken cancellationToken = default)
     {
-        byte[] bytes = await plc.ReadBytesAsync(DataType.DataBlock, db, byteAdr, UdIntBitLength / 8, cancellationToken);
+        byte[] bytes = await plc.ReadBytesAsync(DataType.DataBlock, db, byteAdr, UdIntByteLength, cancellationToken);
         uint value = DWord.FromByteArray(bytes);
         return value;
     }
 
+    /// <summary>
+    /// 【异步】批量读取连续的 UDInt
+    /// </summary>
+    public static async Task<uint[]> ReadUdIntAsync(this Plc plc, int db, int byteAdr, int count, CancellationToken cancellationToken = default)
+    {
+        byte[] bytes = await plc.ReadBytesAsync(DataType.DataBlock, db, byteAdr, UdIntByteLength * count, cancellationToken);
+        uint[] values = DWord.ToArray(bytes);
+        return values;
+    }
+
+    /// <summary>
+    /// 【异步】单点写入 UDInt
+    /// </summary>
     public static async Task WriteUdIntAsync(this Plc plc, int db, int byteAdr, uint value, CancellationToken cancellationToken = default)
     {
         await plc.WriteBytesAsync(DataType.DataBlock, db, byteAdr, DWord.ToByteArray(value), cancellationToken);
+    }
+
+    /// <summary>
+    /// 【异步】批量写入连续的 UDInt
+    /// </summary>
+    public static async Task WriteUdIntAsync(this Plc plc, int db, int byteAdr, uint[] values, CancellationToken cancellationToken = default)
+    {
+        await plc.WriteBytesAsync(DataType.DataBlock, db, byteAdr, DWord.ToByteArray(values), cancellationToken);
     }
 }
