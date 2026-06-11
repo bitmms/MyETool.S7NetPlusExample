@@ -22,21 +22,29 @@ public static class App
 
         // await Test.BoolTest.Test(plc);
         // await Test.ByteTest.Test(plc);
-        // await Test.CharTest.Test(plc);
-        // await Test.DIntTest.Test(plc);
-        // await Test.DWordTest.Test(plc);
+
+        // await Test.SIntTest.Test(plc);
+        // await Test.UsIntTest.Test(plc);
+
         // await Test.IntTest.Test(plc);
-        // await Test.LRealTest.Test(plc);
-        // await Test.RealTest.Test(plc);
-        // await Test.TimeTest.Test(plc);
-        // await Test.UdIntTest.Test(plc);
         // await Test.UIntTest.Test(plc);
+
+        // await Test.DIntTest.Test(plc);
+        // await Test.UdIntTest.Test(plc);
+
+        // await Test.RealTest.Test(plc);
+        // await Test.LRealTest.Test(plc);
+
+        // await Test.CharTest.Test(plc);
+        // await Test.WCharTest.Test(plc);
+
         // await Test.WordTest.Test(plc);
+        // await Test.DWordTest.Test(plc);
+
+        // await Test.DateTest.Test(plc);
+        // await Test.TimeTest.Test(plc);
+
         // await Test.StringTest.Test(plc);
         // await Test.WStringTest.Test(plc);
-        // await Test.UsIntTest.Test(plc);
-        // await Test.SIntTest.Test(plc);
-        // await Test.WCharTest.Test(plc);
-        // await Test.DateTest.Test(plc);
     }
 }
